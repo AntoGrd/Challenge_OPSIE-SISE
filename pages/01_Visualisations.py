@@ -1,5 +1,5 @@
 import streamlit as st
-from analyse_des_donnees_2.ipynb import *
+from 01_Visualisations import *
 
 st.title('Visualisation des données')
 

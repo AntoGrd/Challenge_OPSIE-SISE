@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-#os.chdir(r'C:\Documents\travail\LYON2\M2\visualisation donnees securite\challenge-2023\données\log_fw_3.csv')
+os.chdir(r'C:\Documents\GitHub\Challenge_OPSIE-SISE')
 
 def main():
     st.header("Challenge SISE - OPSIE - 2023")
