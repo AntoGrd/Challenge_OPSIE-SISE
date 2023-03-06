@@ -1,6 +1,7 @@
 import streamlit as st
 from analyse_des_donnees_2 import *
 from IPsrc_functions import *
+from flux_proto import *
 
 st.set_page_config(layout="wide")
 st.title('Visualisations')
@@ -27,6 +28,7 @@ if Diagramme == "Analyse temporelle":
     st.plotly_chart(plot_event_hour(prepare_log_data(st.session_state.df),'timestamp'))
 
 if Diagramme == "Flux par protocole":
-        st.plotly_chart()
+        st.plotly_chart(plot_access_by_protocol(st.session_state.df))
+        st.plotly_chart(plot_action_by_port_type(st.session_state.df))
 
     
