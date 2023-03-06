@@ -12,6 +12,7 @@ def prepare_log_data(log_data):
     log_data.columns = ['timestamp', 'IPsrc', 'IPdst', 'proto', 'portsrc', 'portdst', 'rule','action','7', '8','9']
     log_data.timestamp = to_datetime(log_data.timestamp)
     log_data.portdst = log_data.portdst.astype('object')
+    log_data['port_type'] = log_data['portdst'].apply(lambda x: 'wk' if x < 1024 else ('reg' if x >= 1024 and x <= 49151 else 'priv'))
     return log_data
 
 ## Create dataset
