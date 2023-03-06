@@ -20,8 +20,8 @@ def class_acc_pro(dataframe):
 def plot_access_by_protocol(dataframe):
     tcp, udp = clas_proto(dataframe)
     fig = go.Figure()
-    fig.add_trace(go.Histogram(x=tcp['proto'], name='TCP'))
-    fig.add_trace(go.Histogram(x=udp['proto'], name='UDP'))
+    fig.add_trace(go.Histogram(x=tcp['protocole'], name='TCP'))
+    fig.add_trace(go.Histogram(x=udp['protocole'], name='UDP'))
     fig.update_layout(title='Nombre d\'accès par protocole', xaxis_title='Protocole', yaxis_title='Nombre d\'accès')
     return fig
 
@@ -50,10 +50,3 @@ def plot_access_by_date(dataframe):
     fig.add_trace(go.Scatter(x=dataframe['date'], y=dataframe['date'], mode='lines', name='lines'))
     fig.update_layout(title='Nombre d\'accès par jour', xaxis_title='Jour', yaxis_title='Nombre d\'accès')
     return fig
-
-
-df = pd.read_csv('C:/Users/hugou/Downloads/challenge-2023/challenge-2023/données/log_fw_4.csv/log_fw_4.csv', sep=';')
-
-df = prepare_log_data(df)
-df.head()
-plot_action_by_port_type(df).show()
