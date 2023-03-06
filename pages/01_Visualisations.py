@@ -1,13 +1,32 @@
 import streamlit as st
-from 01_Visualisations import *
+from analyse_des_donnees_2 import *
+from IPsrc_functions import *
 
-st.title('Visualisation des données')
+st.set_page_config(layout="wide")
+st.title('Visualisations')
 
 Diagramme = st.sidebar.radio(
         "Choix du graphique",
-        ("Adresses IP actives", "Ports inférieurs à 1024","Evènements par heure","Actions flux TCP"))
+        ("Requêtes IP Source","Analyse temporelle","Flux par protocole"))
 
 #Affichage des graphiques
-if Diagramme == "Adresses IP actives":
-    st.subheader("Adresses IP actives")
-    st.bar_chart(plot_top_ip_addresses(st.session_state['df'], 'src_ip', n=5))
+if Diagramme == "Requêtes IP Source":
+    Type = st.selectbox(f"Selectionner le type d'action à afficher :",["total", "deny","permit"])
+    col1, col2 = st.columns(2)
+    with col1:
+        st.plotly_chart(plot_pie(create_merge_IPsrc(prepare_log_data(st.session_state.df)), Type))
+    with col2:
+        st.plotly_chart(plot_pie_ratio(ratio_count_df(create_merge_IPsrc(prepare_log_data(st.session_state.df))),'count'))    
+
+    st.plotly_chart(plot_scatter(create_merge_IPsrc(prepare_log_data(st.session_state.df)),'permit', 'deny'))
+    st.plotly_chart(plot_top_ip_addresses(prepare_log_data(st.session_state.df),'IPsrc'))
+    st.plotly_chart(plot_top_allowed_ports(prepare_log_data(st.session_state.df)))
+
+if Diagramme == "Analyse temporelle":
+    st.plotly_chart(plot_tcp_flows(prepare_log_data(st.session_state.df),'timestamp'))
+    st.plotly_chart(plot_event_hour(prepare_log_data(st.session_state.df),'timestamp'))
+
+if Diagramme == "Flux par protocole":
+        st.plotly_chart()
+
+    
