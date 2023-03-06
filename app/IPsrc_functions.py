@@ -9,7 +9,7 @@ def to_datetime(x):
     return pd.to_datetime(x, format='%Y-%m-%d %H:%M:%S.%f')
 
 def prepare_log_data(log_data):
-    log_data.columns = ['timestamp', 'IPsrc', 'IPdst', 'proto', 'lenght', 'portdst', 'rule','action','7', '8','9']
+    log_data.columns = ['timestamp', 'IPsrc', 'IPdst', 'proto', 'portsrc', 'portdst', 'rule','action','7', '8','9']
     log_data.timestamp = to_datetime(log_data.timestamp)
     log_data.portdst = log_data.portdst.astype('object')
     return log_data
