@@ -86,7 +86,7 @@ def plot_tcp_flows(dataframe,coldate):
     denied_counts = denied_flows.groupby(pd.Grouper(key=coldate, freq='H')).size()
 
     # Tracer le graphique des flux TCP autorisés et rejetés
-    fig = px.line(title='Flux TCP autorisés et rejetés par jour')
+    fig = px.line(title='Flux TCP autorisés et rejetés par heure')
     fig.add_scatter(x=permitted_counts.index, y=permitted_counts.values, mode='lines', name='Flux autorisés')
     fig.add_scatter(x=denied_counts.index, y=denied_counts.values, mode='lines', name='Flux rejetés')
     fig.update_xaxes(title='Date')
