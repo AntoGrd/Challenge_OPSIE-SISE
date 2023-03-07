@@ -16,6 +16,14 @@ def prepare_log_data(log_data):
     log_data['port_type'] = log_data['portdst'].apply(lambda x: 'wk' if x < 1024 else ('reg' if x >= 1024 and x <= 49151 else 'priv'))
     return log_data
 
+def prepare_log_sql(log_data):
+    log_data.columns = ['timestamp', 'IPsrc', 'IPdst', 'protocole', 'portdst', 'rule','action']
+    #log_data.timestamp = to_datetime(log_data.timestamp)
+    log_data.timestamp = pd.to_datetime(log_data.timestamp, format="%Y-%m-%d %H:%M:%S")
+    log_data.portdst = log_data.portdst.astype('object')
+    #log_data['port_type'] = log_data['portdst'].apply(lambda x: 'wk' if x < 1024 else ('reg' if x >= 1024 and x <= 49151 else 'priv'))
+
+    return log_data
 ## Create dataset
 
 def create_merge_IPsrc(log_data):
