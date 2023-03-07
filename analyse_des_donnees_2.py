@@ -32,6 +32,20 @@ def plot_top_ip_addresses(dataframe, Ip_column_name, n=5):
 
 #plot_top_ip_addresses( data,'IP source', n=5)
 
+''' create a function to create a go.Bar of the top 10 portdst < 1024 with action=PERMIT'''
+def plot_top_allowed_ports(dataframe):
+    # Filter data to only have allowed actions and ports < 1024
+    filtered_data = dataframe[(dataframe['action'] == 'PERMIT') & (dataframe['portdst'] < 1024)]
+    # Count occurrences for each port
+    port_counts = filtered_data['portdst'].value_counts().sort_values(ascending=False).head(10)
+    # Create dataframe for graph
+    data = {'Port': port_counts.index, 'Nombre d\'occurrences': port_counts.values}
+    df = pd.DataFrame(data)
+    # Plot bar graph with Plotly
+    fig = px.bar(df, x='Port', y='Nombre d\'occurrences', color='Port')
+    fig.update_layout(title='Top 10 des ports inférieurs à 1024 avec un accès autorisé', xaxis_title='Port', yaxis_title='Nombre d\'occurrences')
+    return fig
+
 
 #TOP 10 des ports inférieurs à 1024 avec un accès autorisé,
 def plot_top_allowed_ports(dataframe):
@@ -44,7 +58,11 @@ def plot_top_allowed_ports(dataframe):
     # Tracer le graphique des TOP 10 des ports autorisés
     fig = go.Figure([go.Bar(x=port_counts.index.astype(str), y=port_counts.values, text=['Port ' + str(p) for p in port_counts.index], textposition='auto')])
     fig.update_layout(title='TOP 10 des ports inférieurs à 1024 avec un accès autorisé', xaxis_title='Port', yaxis_title='Nombre d\'accès autorisés')
+    
+    ''' convert the go.Figure in a px.bar'''
     return fig
+    
+
 
 #plot_top_allowed_ports(data)
 
