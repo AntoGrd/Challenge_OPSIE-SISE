@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 from IPsrc_functions import *
-import mysql.connector
+#import mysql.connector
 
 #os.chdir(r'C:\Documents\GitHub\Challenge_OPSIE-SISE')
 
