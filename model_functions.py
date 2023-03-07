@@ -40,6 +40,5 @@ def pie_pred(data):
     fig = px.pie(res_pred, values="counts", names="prediction_class", color="prediction_class", title="Prediction distribution")
     return fig
 
-def most_dangerous_ips(data):
     
    
