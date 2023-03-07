@@ -9,15 +9,15 @@ import mysql.connector
 
 #os.chdir(r'C:\Documents\GitHub\Challenge_OPSIE-SISE')
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="root",
-  database="logs"
-)
+#mydb = mysql.connector.connect(
+#  host="localhost",
+#  user="root",
+#  password="root",
+#  database="logs"
+#)
 
-mycursor = mydb.cursor()
-req = "SELECT datetime, ipsrc, ipdst, proto, dstport, policyid, action FROM fw"
+#mycursor = mydb.cursor()
+#req = "SELECT datetime, ipsrc, ipdst, proto, dstport, policyid, action FROM fw"
 #df = pd.read_sql(req,mydb)
 #df=prepare_log_sql(df)
 
