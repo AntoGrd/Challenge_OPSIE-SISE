@@ -41,7 +41,7 @@ def pie_pred(data):
     return fig
 
     
-<<<<<<< HEAD
+
 # données opsie 
 
 
@@ -73,6 +73,6 @@ def create_unsupervised_df_opsie(data):
 
     df_supervised['hour'] = df_supervised.mean_timestamp.dt.hour
     return df_supervised
-=======
+
    
->>>>>>> 00f38019c8962a45349734bbea0aa32ba2b0862c
+
