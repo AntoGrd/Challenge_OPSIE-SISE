@@ -1,5 +1,5 @@
 # Challenge_OPSIE-SISE
-March 2023
+March 2023 - Challenge to realize in one day with cyber security students
 ### Quick summary
 Log analysis: creation of a streamlit application including a dataviz part with many graphs and an attack detection part using unsupervised models such as isolation forest or kmeans
 
