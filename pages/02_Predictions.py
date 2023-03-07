@@ -9,17 +9,39 @@ df_prep = None
 
 st.title("Importez un fichier csv pour faire des prédictions")
 
+<<<<<<< HEAD
+opsie_data = st.checkbox('Données issues de la base de données OPSIE')
+
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+  if opsie_data:
+        df = pd.read_csv(uploaded_file, sep=';', encoding='latin-1')
+  else :
+        df = pd.read_csv(uploaded_file, sep=';',header=None, encoding='latin-1')
+
+=======
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   df = pd.read_csv(uploaded_file, sep=';',header=None, encoding='latin-1')
+>>>>>>> 00f38019c8962a45349734bbea0aa32ba2b0862c
   st.write(df, df.shape)
   
 
 st.title('Prédictions du modèle')
 
 if df is not None:
+<<<<<<< HEAD
+    if opsie_data:
+        df_prep = create_unsupervised_df_opsie(prepare_log_data_opsie(df))
+ 
+    else:
+        df_prep = create_unsupervised_df(prepare_log_data(df))
+
+    X_unsupervised = df_prep[['counts', 'hour', 'ratio_deny_total']]     
+=======
     df_prep = create_unsupervised_df(prepare_log_data(df))
     X_unsupervised = df_prep[['counts', 'hour', 'ratio_deny_total']]
+>>>>>>> 00f38019c8962a45349734bbea0aa32ba2b0862c
 else : 
     st.write('_Aucun fichier n\'a été importé_' )
 
@@ -43,6 +65,10 @@ with st.sidebar.form("Input"):
 
 if btnResult:
     with st.spinner('Predicting...'):
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 00f38019c8962a45349734bbea0aa32ba2b0862c
         y_pred = model.predict(X_unsupervised)
         att = model.decision_function(X_unsupervised)
         df_prep['prediction_value'] = att
