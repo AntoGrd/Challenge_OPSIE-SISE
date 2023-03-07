@@ -16,7 +16,7 @@ Les différents fichiers functions sont utilisés et sont appelés par l'applica
 
 ## Afin de lancer l'application il faut :
 
-Créer un environnement et réaliser un git clone du dépôt sur un dossier de votre choix
+Créer un environnement et réaliser un git clone du dépôt sur un dossier de votre choix.
 
 Dans la console bash
 ```
