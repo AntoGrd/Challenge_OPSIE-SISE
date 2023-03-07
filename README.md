@@ -34,3 +34,25 @@ Lancer l'application Streamlit :
 python -m streamlit run Accueil.py
 ```
 
+Pour lancer l'appli avec docker:
+
+-aller dans un invite de commande
+-aller dans le chemin du projet 
+
+```
+cd .../Challenge_OPSIE-SISE
+```
+
+-construire l'image docker:
+
+```
+docker build -t nomchoisidelimage .
+```
+
+Dans un invite de commande, run l'image:
+
+```
+docker run nomchoisidelimage 
+```
+
+Les liens url ne sont pas valides car l'application n'est pas hébergée en ligne, il faut ouvrir un nouvel onglet et aller à l'url localhost:8501
