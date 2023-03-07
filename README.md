@@ -16,20 +16,20 @@ Les différents fichiers functions sont utilisés et sont appelés par l'applica
 
 ## Afin de lancer l'application il faut :
 
-Créer un environnement et réaliser un git clone du dépôt sur un dossier de votre choix.
+Créer un environnement et réaliser un git clone du dépôt dans un dossier de votre choix.
 
-Dans la console bash
+Dans la console bash :
 ```
 git clone https://github.com/Skarbkit/Challenge_OPSIE-SISE.git
 ```
 
-Installer le fichier requirements.txt
+Installer le fichier requirements.txt :
 ```
 $pip install -r requirements.txt
 ```
 
 
-Lancer l'application Streamlit 
+Lancer l'application Streamlit :
 ```
 python -m streamlit run Accueil.py
 ```
