@@ -15,13 +15,9 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
   if opsie_data:
         df = pd.read_csv(uploaded_file, sep=';', encoding='latin-1')
+      
   else :
         df = pd.read_csv(uploaded_file, sep=';',header=None, encoding='latin-1')
-
-
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-  df = pd.read_csv(uploaded_file, sep=';',header=None, encoding='latin-1')
   st.write(df, df.shape)
   
 
@@ -35,8 +31,6 @@ if df is not None:
         df_prep = create_unsupervised_df(prepare_log_data(df))
 
     X_unsupervised = df_prep[['counts', 'hour', 'ratio_deny_total']]     
-    df_prep = create_unsupervised_df(prepare_log_data(df))
-    X_unsupervised = df_prep[['counts', 'hour', 'ratio_deny_total']]
 else : 
     st.write('_Aucun fichier n\'a été importé_' )
 
