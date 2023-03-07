@@ -21,14 +21,15 @@ if Diagramme == "Requêtes IP Source":
 
     st.plotly_chart(plot_scatter(create_merge_IPsrc(st.session_state.df),'permit', 'deny'))
     st.plotly_chart(plot_top_ip_addresses(st.session_state.df,'IPsrc'))
-    st.bar_chart(plot_top_allowed_ports(st.session_state.df))
+    st.plotly_chart(plot_top_allowed_ports(st.session_state.df))
 
 if Diagramme == "Analyse temporelle":
     st.plotly_chart(plot_tcp_flows(st.session_state.df,'timestamp'))
     st.plotly_chart(plot_event_hour(st.session_state.df,'timestamp'))
+    #st.pyplot(circular_graph(st.session_state.df))
 
 if Diagramme == "Flux par protocole":
-        st.plotly_chart(plot_access_by_protocol(st.session_state.df))
-        st.plotly_chart(plot_action_by_port_type(st.session_state.df))
+    st.plotly_chart(plot_access_by_protocol(st.session_state.df))
+    st.plotly_chart(plot_action_by_port_type(st.session_state.df))
 
     

@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[89]:
-
 
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import datetime
 import seaborn as sns
@@ -56,10 +55,16 @@ def plot_top_allowed_ports(dataframe):
     port_counts = filtered_data['portdst'].value_counts().sort_values(ascending=False).head(10)
 
     # Tracer le graphique des TOP 10 des ports autorisés
-    fig = go.Figure([go.Bar(x=port_counts.index.astype(str), y=port_counts.values, text=['Port ' + str(p) for p in port_counts.index], textposition='auto')])
-    fig.update_layout(title='TOP 10 des ports inférieurs à 1024 avec un accès autorisé', xaxis_title='Port', yaxis_title='Nombre d\'accès autorisés')
+    #fig = go.Figure([go.Bar(x=port_counts.index.astype(str), y=port_counts.values, text=['Port ' + str(p) for p in port_counts.index], textposition='auto')])
+    #fig.update_layout(title='TOP 10 des ports inférieurs à 1024 avec un accès autorisé', xaxis_title='Port', yaxis_title='Nombre d\'accès autorisés')
+    
+    '''convert port_counts (an integer) into a string to be able to plot it with plotly'''
+    port_counts.index = port_counts.index.astype("category")
     
     ''' convert the go.Figure in a px.bar'''
+    fig = px.bar(port_counts, x=port_counts.index, y=port_counts.values)
+    fig.update_layout(title='TOP 10 des ports inférieurs à 1024 avec un accès autorisé', xaxis_title='Port', yaxis_title='Nombre d\'accès autorisés')
+
     return fig
     
 
@@ -105,3 +110,25 @@ def plot_event_hour(dataframe,coldate):
 
 #plot_event_hour(data)
 
+def circular_graph(dataframe):
+    dataframe['heure'] = dataframe['timestamp'].dt.hour
+    data = dataframe.groupby('heure')['action'].count().reset_index()
+    hour_counts = data.groupby("heure")["action"].sum()
+
+    ''' create a graph of type coord polar plot and return it'''
+
+
+    # Créer le graphique de type coord polar plot
+    fig, ax = plt.subplots(subplot_kw=dict(projection='polar'),figsize=(10,10))
+    theta = np.linspace(0, 2*np.pi, len(hour_counts)+1)[:-1]
+    bars = ax.bar(theta, hour_counts, width=2*np.pi/len(hour_counts), align="edge")
+
+    # Personnaliser le graphique
+    ax.set_theta_zero_location("N")
+    ax.set_theta_direction(-1)
+    ax.set_xticks(theta)
+    ax.set_xticklabels(hour_counts.index.astype(str))
+    ax.set_title("Nombre d'occurrences par heure")
+
+    # Afficher le graphique
+    return fig

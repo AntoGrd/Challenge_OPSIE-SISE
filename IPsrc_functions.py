@@ -21,7 +21,10 @@ def prepare_log_sql(log_data):
     #log_data.timestamp = to_datetime(log_data.timestamp)
     log_data.timestamp = pd.to_datetime(log_data.timestamp, format="%Y-%m-%d %H:%M:%S")
     log_data.portdst = log_data.portdst.astype('object')
+    
     #log_data['port_type'] = log_data['portdst'].apply(lambda x: 'wk' if x < 1024 else ('reg' if x >= 1024 and x <= 49151 else 'priv'))
+    ''' remove majuscule from values in column action'''
+    log_data['action'] = log_data['action'].str.upper()
 
     return log_data
 ## Create dataset
